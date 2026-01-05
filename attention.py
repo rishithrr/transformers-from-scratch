@@ -5,7 +5,28 @@ class MultiHeadSelfAttention():
     def __init__(self, d_model, num_heads):
         self.d_model = d_model
         self.num_heads = num_heads
-        d_k = 
+        assert d_model % num_heads == 0, "d_model needs to be divisible by num_heads"
+        self.d_k = d_model // num_heads
+
+    def forward(self, X):
+        B = len(X) # --> Batch size: Number of sequences
+        T = len(X[0]) # --> Sequence length: Number of tokens in a sequence
+        D = len(X[0][0]) # --> Embedding dimension: Size of each token vector
+        
+        for b in range(B):
+            # Traversing each sequence in a batch of sequences.
+            Q = self.W_q(X[b])
+            K = self.W_k(X[b])
+            V = self.W_v(X[b])
+
+            Qh, Kh, Vh = [], [], []
+            for h in range(self.num_heads):
+                start = b * self.d_k
+                end = start + self.d_k
+                Qh.append([q[start:end] for q in Q])
+                Kh.append([k[start:end] for k in K])
+                Vh.append([v[start:end] for v in V])
+
     # Step 1: Compute Query, Key, Value
     def compute_Q_K_V(self):
         # X is the output of the embedding layer (plus positional encoding) for a sequence.
