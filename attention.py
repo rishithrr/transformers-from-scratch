@@ -3,6 +3,7 @@ import numpy as np
 class MultiHeadSelfAttention():    
 
     def __init__(self, d_model, num_heads):
+        # d_model --> Embedding model size
         self.d_model = d_model
         self.num_heads = num_heads
         assert d_model % num_heads == 0, "d_model needs to be divisible by num_heads"
@@ -26,6 +27,7 @@ class MultiHeadSelfAttention():
                 Qh.append([q[start:end] for q in Q])
                 Kh.append([k[start:end] for k in K])
                 Vh.append([v[start:end] for v in V])
+
 
     # Step 1: Compute Query, Key, Value
     def compute_Q_K_V(self):
