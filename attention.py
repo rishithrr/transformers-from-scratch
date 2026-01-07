@@ -28,7 +28,6 @@ class MultiHeadSelfAttention():
                 Kh.append([k[start:end] for k in K])
                 Vh.append([v[start:end] for v in V])
 
-
     # Step 1: Compute Query, Key, Value
     def compute_Q_K_V(self):
         # X is the output of the embedding layer (plus positional encoding) for a sequence.
