@@ -20,6 +20,7 @@ class MultiHeadSelfAttention():
             V = self.W_v(X[b])
 
             Qh, Kh, Vh = [], [], []
+            # Traversing each head
             for h in range(self.num_heads):
                 start = b * self.d_k
                 end = start + self.d_k
