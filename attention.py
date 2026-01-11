@@ -43,19 +43,19 @@ class MultiHeadSelfAttention():
         V = X @ W_V
         return Q, K, V
 
-# Step 2; Compute Similarity score, it's for finding relevant tokens. Higher score means more relevant
+    # Step 2; Compute Similarity score, it's for finding relevant tokens. Higher score means more relevant
     def simiilarity(self):
         # Since the shape of Q and K is n * d_k, we are going to perform transpose on K, so we can perfrom matrix multiplication on Q and K
         # Shape of score will be n * n
         score = Q @ K.T
         return score
 
-# Step 3: Scaling for similarity score
+    # Step 3: Scaling for similarity score
     def scale(self):
         # Since the dot products grow as the d_k i.e emdedding model size increases, and it grows by sqrt of d_k
         score = score / np.sqrt(d_k)
 
-# Step 4: Computing Softmax from scaled similarity score
+    # Step 4: Computing Softmax from scaled similarity score
     def softmax(self):
         # softmax turns the scaled similarity scores into probablities. Takes a vector of real numbers i.e Scaled similarity scores ans tuens them into all positive numbers
         # All outputs will be between 0 and 1
