@@ -1,5 +1,4 @@
 import numpy as np
-
 class MultiHeadSelfAttention():    
     def __init__(self, d_model, num_heads):
         # d_model --> Embedding model size
@@ -7,7 +6,6 @@ class MultiHeadSelfAttention():
         self.num_heads = num_heads
         assert d_model % num_heads == 0, "d_model needs to be divisible by num_heads"
         self.d_k = d_model // num_heads
-
     def forward(self, X):
         B = len(X) # --> Batch size: Number of sequences
         T = len(X[0]) # --> Sequence length: Number of tokens in a sequence
