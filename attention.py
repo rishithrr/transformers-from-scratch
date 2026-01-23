@@ -1,5 +1,4 @@
 import numpy as np
-
 class MultiHeadSelfAttention():    
     def __init__(self, d_model, num_heads):
         # d_model --> Embedding model size
